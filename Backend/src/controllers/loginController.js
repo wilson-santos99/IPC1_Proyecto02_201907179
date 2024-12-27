@@ -1,29 +1,27 @@
 const { adminData } = require("../config/config");
 
-// Controlador para el login
-//controlador para administrar el login
-module.exports.login = async (req, res) => {
+// Controlador para manejar la autenticación
+const login = async (req, res) => {
     try {
-      if (
-        req.body.username === adminData.username &&
-        req.body.password === adminData.password
-      ) {
-        res.status(200).json({
-          message: "login exitoso",
-          //body: req.body,
-          status:"success"
-        });
-      } else {
-        res.status(401).json({
-          message: "Usuario o contraseña incorrectos, intente de nuevo",
-           status:"error"
-          //body: req.body,
-        });
-      }
-    } catch (error) {
-      res.status(500).json({
-        error: error.message,
-      });
-    }
-  };
+        const { username, password } = req.body;
 
+        if (username === adminData.username && password === adminData.password) {
+            return res.status(200).json({
+                message: "Inicio de sesión exitoso",
+                status: "success",
+            });
+        }
+
+        return res.status(401).json({
+            message: "Usuario o contraseña incorrectos, intente de nuevo",
+            status: "error",
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Error interno del servidor",
+            error: error.message,
+        });
+    }
+};
+
+module.exports = { login };

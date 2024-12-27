@@ -13,7 +13,8 @@ const addClient = (req, res) => {
 
   if (!age || typeof age !== "number" || age <= 0) {
     return res.status(400).json({
-      message: "Error en los datos del cliente: la edad debe ser mayor que 0 y numérica",
+      message:
+        "Error en los datos del cliente: la edad debe ser mayor que 0 y numérica",
       status: "error",
     });
   }

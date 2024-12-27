@@ -1,131 +1,132 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f4c3;
+    background-color: #f4f7fc;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100vh;
+    overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 .dashboard-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 100%;
     padding: 20px;
+    gap: 30px;
+    max-width: 1200px; /* Centra el contenido */
+    margin: auto; /* Agrega margen automático */
+    box-sizing: border-box;
 }
 
-h1 {
-    color: #33691e;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-    text-align: center;
+.dashboard-header {
     width: 100%;
+    background-color: #3f51b5;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.logout-button {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #c62828;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-container {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
     width: 100%;
-    max-width: 1200px;
-    background-color: #dcedc8;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
 }
 
 .form-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     background-color: #ffffff;
-    padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 480px;
-    margin: 15px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.form-section:hover {
-    transform: translateY(-5px);
-    background-color: #f1f8e9;
+    padding: 20px;
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
 }
 
 .form-section h2 {
-    margin-bottom: 20px;
-    color: #558b2f;
-    font-size: 1.8rem;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .form-section input {
-    width: 90%;
+    width: 100%;
     margin-bottom: 15px;
-    padding: 12px;
-    border: 1px solid #c5e1a5;
+    padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-section input:focus {
+    border-color: #3f51b5;
+    outline: none;
+    box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
 }
 
 .btn-submit {
-    background-color: #7cb342;
-    color: #ffffff;
-    padding: 12px 25px;
+    width: 100%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: #558b2f;
-    transform: scale(1.05);
+    background-color: #388e3c;
 }
 
-.charts-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+.charts-section,
+.tables-section {
     width: 100%;
-    max-width: 1200px;
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 .chart {
     width: 100%;
-    max-width: 800px;
+    height: 400px; /* Fija la altura para evitar desbordes */
     margin-bottom: 30px;
-}
-
-.tables-section {
-    width: 100%;
-    max-width: 1200px;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
-}
-
-.tables-section h2 {
-    color: #33691e;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
 }
 
 .tables-section table {
@@ -135,8 +136,8 @@ h1 {
 }
 
 .tables-section th {
-    background-color: #689f38;
-    color: #ffffff;
+    background-color: #3f51b5;
+    color: white;
     padding: 12px;
     text-align: left;
     font-size: 16px;
@@ -144,43 +145,46 @@ h1 {
 
 .tables-section td {
     padding: 12px;
-    border: 1px solid #c5e1a5;
+    border: 1px solid #ddd;
     font-size: 14px;
 }
 
 .tables-section tr:nth-child(even) {
-    background-color: #f1f8e9;
+    background-color: #f4f7fc;
 }
 
 .tables-section tr:hover {
-    background-color: #dcedc8;
+    background-color: #e8f0fe;
 }
 
 .btn-delete {
-    background-color: #dc3545;
+    background-color: #e53935;
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .btn-delete:hover {
-    background-color: #c82333;
-  }
-  
-  .btn-logout {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-logout:hover {
-    background-color: #c82333;
-  }
-  
+    font-size: 14px;
+}
+
+.btn-delete:hover {
+    background-color: #c62828;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .charts-section .chart {
+        height: 300px; /* Ajuste de altura en dispositivos pequeños */
+    }
+}
+.chart {
+    width: 100%;
+    max-width: 800px; /* Ajusta según tu diseño */
+    height: 400px; /* Fija la altura para gráficos claros */
+    margin: auto; /* Centrado */
+}

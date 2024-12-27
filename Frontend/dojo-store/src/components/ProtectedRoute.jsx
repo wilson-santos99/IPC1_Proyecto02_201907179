@@ -6,15 +6,14 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" replace />;
   }
 
   return children;
 };
 
-// Validación de las propiedades con PropTypes
 ProtectedRoute.propTypes = {
-  children: PropTypes.node.isRequired, // Valida que children sea un nodo React
+  children: PropTypes.node.isRequired,
 };
 
 export default ProtectedRoute;

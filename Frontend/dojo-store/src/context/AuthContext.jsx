@@ -1,21 +1,22 @@
-import { createContext, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
-
+import Swal from "sweetalert2";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(() =>
+    localStorage.getItem("isAuthenticated") === "true"
+  );
 
   const login = () => {
     setIsAuthenticated(true);
-    navigate("/dashboard"); // Redirige al Dashboard después de iniciar sesión
+    localStorage.setItem("isAuthenticated", "true");
   };
 
   const logout = () => {
     setIsAuthenticated(false);
-    navigate("/"); // Redirige al Login después de cerrar sesión
+    localStorage.removeItem("isAuthenticated");
+    Swal.fire("Éxito", "Vuelva Pronto", "success")
   };
 
   return (
@@ -25,9 +26,8 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Agrega la validación de las propiedades
 AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Valida que children sea un nodo React
+  children: PropTypes.node.isRequired,
 };
 
 export const useAuth = () => useContext(AuthContext);

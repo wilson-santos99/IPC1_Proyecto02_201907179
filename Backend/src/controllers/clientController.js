@@ -4,6 +4,7 @@ const clients = []; // Base de datos simulada
 const addClient = (req, res) => {
   const { name, age, nit } = req.body;
 
+  // Validación del nombre
   if (!name || typeof name !== "string" || name.trim() === "") {
     return res.status(400).json({
       message: "Error en los datos del cliente: el nombre es requerido",
@@ -11,10 +12,19 @@ const addClient = (req, res) => {
     });
   }
 
+  // Validación de la edad
   if (!age || typeof age !== "number" || age <= 0) {
     return res.status(400).json({
       message:
-        "Error en los datos del cliente: la edad debe ser mayor que 0 y numérica",
+        "Error en los datos del cliente: la edad debe ser mayor que 0",
+      status: "error",
+    });
+  }
+
+  // Validación del NIT
+  if (nit && (isNaN(nit) || Number(nit) <= 0)) {
+    return res.status(400).json({
+      message: "Error en los datos del cliente: el NIT debe ser un número válido",
       status: "error",
     });
   }

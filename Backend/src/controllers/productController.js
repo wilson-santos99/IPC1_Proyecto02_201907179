@@ -8,20 +8,20 @@ const addProduct = (req, res) => {
   if (!name || typeof name !== "string" || name.trim() === "") {
     return res.status(400).json({
       message: "Error en los datos del producto: el nombre es requerido",
-      status: "error",
+      status: "error",  
     });
   }
 
   if (!price || typeof price !== "number" || price < 0) {
     return res.status(400).json({
-      message: "Error en los datos del producto: el precio debe ser mayor que 0 y numérico",
+      message: "Error en los datos del producto: el precio debe ser mayor que 0",
       status: "error",
     });
   }
 
   if (stock === undefined || typeof stock !== "number" || stock <=0) {
     return res.status(400).json({
-      message: "Error en los datos del producto: el stock debe ser mayor  a 0 y numérico",
+      message: "Error en los datos del producto: el stock debe ser mayor  a 0",
       status: "error",
     });
   }
